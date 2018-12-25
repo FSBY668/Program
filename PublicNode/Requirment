@@ -1,0 +1,15 @@
+Problem Description 幼儿园公告栏只有黑板 联系家长也是用纸质书信 家长之间联系也只有Whatsapp群
+
+Problem Solution: 
+Var 1: 
+仿照微信公众号 作一个具备订阅推送的软件 方便用户（家长）和消息提供方（幼儿园）的通信
+技术实现: 
+* 服务器端（幼儿园）具备消息的广播推送功能 电脑（或者电脑及手机）上具备增删改发存消息的功能 应该也具备接收并储存用户端（家长）的消息
+* 用户端（家长）具备订阅幼儿园并接收消息的功能 手机上编程 用户端也应该用断送消息给服务器的功能
+* 家长之间或者和幼儿园之间的聊天功能
+* 用户注册登录
+* MQTT 通信协议
+
+Develop LOG:
+2018-12-23: Requirement, (todo: MQTT协议 手机端编程 QT-Creator实例(https://github.com/emqtt/qmqtt https://www.cnblogs.com/yexiaopeng/p/8542894.html) CMAKE git)
+2018-12-24: Learn git
