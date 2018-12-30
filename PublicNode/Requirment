@@ -18,8 +18,9 @@ Develop LOG:
 * Learn git, Create new GitHub repositry
 
 2018-12-25--2018-12-30: 
-Learn Qt Creator (1-14), would like to Use Qt to do the implenmentation. 
-Installed Qt Creator, Qt Designer etc. Installed Qt 5 (5.9.1). (sudo apt-get install qt5-default)
+* Learn Qt Creator (1-14), would like to Use Qt to do the implenmentation. 
+* Installed Qt Creator, Qt Designer etc. 
+* Installed Qt 5 (5.9.1). (sudo apt-get install qt5-default)
 
 todo: 
 1. MQTT协议 (going on)
