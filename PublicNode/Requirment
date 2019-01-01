@@ -1,6 +1,6 @@
 Problem Description 幼儿园公告栏只有黑板 联系家长也是用纸质书信 家长之间联系也只有Whatsapp群
 
-Problem Solution: 
+Problem Solution (From Developer): 
 Var 1: 
 仿照微信公众号 作一个具备订阅推送的软件 方便用户（家长）和消息提供方（幼儿园）的通信
 技术实现: 
@@ -9,6 +9,13 @@ Var 1:
 * 家长之间或者和幼儿园之间的聊天功能
 * 用户注册登录 用户权限级别 订阅
 * MQTT 通信协议
+
+Functionality (From PO):
+要做的产品是 解决学校发布信息，方便家长学生查询信息的一个类似微信公众号的app
+1. 用户可以关注一个组织或者机构等
+	1.1 从而得到通知推送
+	1.2 可以有sub menu, 点击需要的menu, 得到相关信息，参照微信公众号
+2. 加入一个小组，进行讨论
 
 Develop LOG:
 2018-12-23: 
