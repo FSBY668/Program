@@ -22,6 +22,9 @@ Develop LOG:
 * Installed Qt Creator, Qt Designer etc. 
 * Installed Qt 5 (5.9.1). (sudo apt-get install qt5-default)
 
+2018-12-31--2019-01-01:
+* Learn Qt Creator (15-25).
+
 todo: 
 1. MQTT协议 (going on)
 2. 手机端编程 ----- can use Qt creator, delay
