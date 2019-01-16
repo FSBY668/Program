@@ -48,5 +48,6 @@ Develop LOG:
 5. QT Creator C++ mqtt example (going on)
 6. Learn Qt Creator
 todo: 
-7. Test on the phone, the publish and subscribtion function of QtMqtt
+7. Test on the phone, the publish and subscribtion function of QtMqtt,
+8. how to cross compile Qt5Mqtt.so and pthread.so for ARM (how to cross compile for arm on linux)
  
