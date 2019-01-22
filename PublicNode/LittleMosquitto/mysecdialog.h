@@ -1,0 +1,4 @@
+#ifndef MYSECDIALOG_H
+#define MYSECDIALOG_H
+
+#endif // MYSECDIALOG_H
