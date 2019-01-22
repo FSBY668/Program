@@ -57,18 +57,25 @@ Develop LOG:
 * finish the QtMqtt subscriptions example. just follow see www.diy.ind.in/linux/31-install-mqtt-module-in-qt
 * publish the message using subscriptions app destop version, subscribe the message using app Android version
 
+2019-01-22:
+* commit all the source code to github
+
 
 
 1. MQTT协议 (going on)
 2. 手机端编程 ----- can use Qt creator
 3. QT-Creator实例(https://github.com/emqtt/qmqtt https://www.cnblogs.com/yexiaopeng/p/8542894.html) 
 4. CMAKE ---- Delay
-5. QT Creator C++ mqtt example (going on)
+5. QT Creator C++ mqtt example
 6. Learn Qt Creator
 7. Test on the phone, the publish and subscribtion function of QtMqtt,
 8. how to cross compile Qt5Mqtt.so and pthread.so for ARM (how to cross compile for arm on linux) -- not necessary, if following www.diy.ind.in/linux/31-install-mqtt-module-in-qt
 
 todo: 
 9. message encrption
+10. external network, fixed IP
+11. Work flow
+
+10. 11. 9.
 
 
