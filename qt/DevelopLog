@@ -61,7 +61,9 @@ Develop LOG:
 * commit all the source code to github
 
 2019-01-24:
-* 学习内网穿透 https://my.oschina.net/ZL520/blog/2086061  https://blog.csdn.net/zhangguo5/article/details/77848658
+* 学习内网穿透 https://my.oschina.net/ZL520/blog/2086061  https://blog.csdn.net/zhangguo5/article/details/77848658 
+* 在家里的路由器上进行端口映射解决外网手机访问内网服务器的问题 只需登录路由器 进入Port Forwarding 输入内网服务器的IP(192.168.1.36), mosquitto使用端口1883, 填入端口即可 https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/
+* 如果用于商业内网穿透问题还要深入研究 参考上面两个链接中的多种办法 选择一个免费的
 
 
 
@@ -73,12 +75,12 @@ Develop LOG:
 6. Learn Qt Creator
 7. Test on the phone, the publish and subscribtion function of QtMqtt,
 8. how to cross compile Qt5Mqtt.so and pthread.so for ARM (how to cross compile for arm on linux) -- not necessary, if following www.diy.ind.in/linux/31-install-mqtt-module-in-qt
+9. external network, fixed IP
 
 todo: 
-9. message encrption
-10. external network, fixed IP
+10. message encrption
 11. Work flow
 
-10. 11. 9.
+11. 10.
 
 
