@@ -65,6 +65,9 @@ Develop LOG:
 * 在家里的路由器上进行端口映射解决外网手机访问内网服务器的问题 只需登录路由器 进入Port Forwarding 输入内网服务器的IP(192.168.1.36), mosquitto使用端口1883, 填入端口即可 https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/
 * 如果用于商业内网穿透问题还要深入研究 参考上面两个链接中的多种办法 选择一个免费的
 
+2019-01-27:
+* Learn the detail of the subscription example code.
+
 
 
 1. MQTT协议 (going on)
@@ -80,7 +83,8 @@ Develop LOG:
 todo: 
 10. message encrption
 11. Work flow
+12. Ticket System (Trac: wiki.ubuntu.org.cn/Trac的安装设置)
 
-11. 10.
+11. 12. 10.
 
 
