@@ -84,7 +84,12 @@ todo:
 10. message encrption
 11. Work flow
 12. Ticket System (Trac: wiki.ubuntu.org.cn/Trac的安装设置)
+13. on the android phone, the program can not keep running, after about 1 min, the mqtt connect change to disconnected
+14. basic function: 1. publish / subscription 2. user subscription authentification 3. Edit message 4. message format
+15. 进入某个幼儿园按钮，上面是一个消息框，可以显示之前的消息记录，也可以接收到实时推送的消息 下方是一些横排菜单 每个横排菜单有下拉上拉菜单 
+16. 推送方可以选择把推送的消息归类到某个菜单
+17. 服务器的设置（delay）
 
-11. 12. 10.
+13. 11. 12. 10.
 
 
