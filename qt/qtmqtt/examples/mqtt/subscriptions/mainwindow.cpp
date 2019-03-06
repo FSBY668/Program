@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_client = new QMqttClient(this);
     m_client->setHostname(ui->lineEditHost->text());
     m_client->setPort(ui->spinBoxPort->value());
+    m_client->setKeepAlive(7*24*60*60);
 
     connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);
     connect(m_client, &QMqttClient::disconnected, this, &MainWindow::brokerDisconnected);
@@ -140,6 +141,24 @@ void MainWindow::brokerDisconnected()
     ui->lineEditUser->setEnabled(true);
     ui->lineEditPassword->setEnabled(true);
     ui->buttonConnect->setText(tr("Connect"));
+
+    ui->lineEditHost->setEnabled(false);
+    ui->spinBoxPort->setEnabled(false);
+    ui->lineEditUser->setEnabled(false);
+    ui->lineEditPassword->setEnabled(false);
+    ui->buttonConnect->setText(tr("Disconnect"));
+
+//    // 2019-02-10: with this on PC keep Mqtt broker connection
+//    m_client = new QMqttClient(this);
+
+//    if (m_client)
+//    {
+//        m_client->setHostname("77.9.26.181");
+//        m_client->setPort(1883);
+//        m_client->connectToHost();
+//        m_client->subscribe(ui->lineEditTopic->text(), ui->spinQoS->text().toUInt());
+//    }
+
 }
 
 void MainWindow::setClientPort(int p)
@@ -151,14 +170,14 @@ void MainWindow::on_buttonPublish_clicked()
 {
     if (m_client->publish(ui->lineEditTopic->text(),
                           ui->lineEditMessage->text().toUtf8(),
-                          ui->spinQoS_2->text().toUInt(),
-                          ui->checkBoxRetain->isChecked()) == -1)
+                          2 /*ui->spinQoS_2->text().toUInt()*/,
+                          true /*ui->checkBoxRetain->isChecked()*/) == -1)
         QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not publish message"));
 }
 
 void MainWindow::on_buttonSubscribe_clicked()
 {
-    auto subscription = m_client->subscribe(ui->lineEditTopic->text(), ui->spinQoS->text().toUInt());
+    auto subscription = m_client->subscribe(ui->lineEditTopic->text(), 2 /*ui->spinQoS->text().toUInt()*/);
     if (!subscription) {
         QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
         return;

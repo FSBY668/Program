@@ -9,3 +9,5 @@ const static std::string strVersion = "1";
 // * Download the Android SDK and NDK
 // * using IDE QtCreator, set the kits. 
 // * Download the QtMqtt and make the subscription example run on my PC and on my Android phone 
+// version 2:
+// * test with QoS, keep alive and Retain (currently with QoS 2, Retain Yes, keep alive one week) 
