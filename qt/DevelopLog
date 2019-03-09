@@ -71,6 +71,9 @@ Develop LOG:
 2019-03-06:
 * Test with the QoS and Retain and keep alive etc.
 
+2019-03-09:
+* Edit the Android manifest xml file, set the priority to 1000 (https://stackoverflow.com/questions/27590432/where-did-the-create-androidmanifest-xml-button-go-in-qt-creator-3-3-0)
+
 
 
 1. MQTT协议 (going on)
@@ -84,17 +87,22 @@ Develop LOG:
 9. external network, fixed IP
 12. Ticket System (Trac: wiki.ubuntu.org.cn/Trac的安装设置) - Jira created by Zhang Wei
 13. on the android phone, the program can not keep running, after about 1 min, the mqtt connect change to disconnected （*常亮屏不能解决问题 *how to change androidmanifest.xml? https://blog.csdn.net/elzza/article/details/78517356 *reason is keepalive... set keep alive very big）
+18. anti-kill (proposal: * seperate publisher and subscriber * config file * publisher still keep alive 60 * subscriber keep alive one week * anti kill with root rights to put the apk to the /system/app or change the android manifest xml file in apk， try second first)
+11. Work flow
+
 
 todo: 
 10. message encrption
-11. Work flow
 14. basic function: 1. publish / subscription 2. user subscription authentification 3. Edit message 4. message format
 15. 进入某个幼儿园按钮，上面是一个消息框，可以显示之前的消息记录，也可以接收到实时推送的消息 下方是一些横排菜单 每个横排菜单有下拉上拉菜单 
 16. 推送方可以选择把推送的消息归类到某个菜单
 17. 服务器的设置（delay）
-18. anti-kill (proposal: * seperate publisher and subscriber * config file * publisher still keep alive 60 * subscriber keep alive one week * anti kill with root rights to put the apk to the /system/app or change the android manifest xml file in apk， try second first)
+19. Interface look like (ABK)
+20. when broker disconnect, restart
+21. seperate the publisher and subscriber, login system
 
-18. 11. 12. 14. 15. 16. 17. 10.
+
+14. 15. 16. 17. 10.
 
 
 --------------------------------------------------------------
@@ -133,5 +141,4 @@ chmod 777 xxx.apk 修改权限
 
 --------------------
 
-qt creator edit android manifest xml
-https://stackoverflow.com/questions/27590432/where-did-the-create-androidmanifest-xml-button-go-in-qt-creator-3-3-0
+
