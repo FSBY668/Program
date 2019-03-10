@@ -65,6 +65,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_client = new QMqttClient(this);
     m_client->setHostname(ui->lineEditHost->text());
     m_client->setPort(ui->spinBoxPort->value());
+    m_client->setCleanSession(false);
     m_client->setKeepAlive(7*24*60*60);
 
     connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);

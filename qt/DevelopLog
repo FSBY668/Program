@@ -87,7 +87,7 @@ Develop LOG:
 9. external network, fixed IP
 12. Ticket System (Trac: wiki.ubuntu.org.cn/Trac的安装设置) - Jira created by Zhang Wei
 13. on the android phone, the program can not keep running, after about 1 min, the mqtt connect change to disconnected （*常亮屏不能解决问题 *how to change androidmanifest.xml? https://blog.csdn.net/elzza/article/details/78517356 *reason is keepalive... set keep alive very big）
-18. anti-kill (proposal: * seperate publisher and subscriber * config file * publisher still keep alive 60 * subscriber keep alive one week * anti kill with root rights to put the apk to the /system/app or change the android manifest xml file in apk， try second first)
+18. anti-kill (proposal: * seperate publisher and subscriber * config file * publisher still keep alive 60 * subscriber keep alive one week * anti kill with root rights to put the apk to the /system/app or change the android manifest xml file in apk， try second first). Actually it may be not necessary to implement the anti-kill system, because mqtt support the offline subscribe messages.
 11. Work flow
 
 
@@ -100,9 +100,10 @@ todo:
 19. Interface look like (ABK)
 20. when broker disconnect, restart
 21. seperate the publisher and subscriber, login system
+22. support the offline subscribe the messages
 
 
-14. 15. 16. 17. 10.
+21. 22. 20 19. 14. 15. 16. 17. 10.
 
 
 --------------------------------------------------------------
@@ -141,4 +142,10 @@ chmod 777 xxx.apk 修改权限
 
 --------------------
 
+https://www.jianshu.com/p/da9bd6be72c2
+以下是做到sub离线接收到pub发布的信息。①开启mosquitto服务器时可以添加一个-v命令。可以在broker中打印出监控日志。mosquitto -c mosquitto.conf -v②在pub发布消息时需要绑定主题和发布的信息之外还需要指定Qos(服务质量)，具体命令mosquitto_pub -t topic -m message -q 1服务质量：MQTT 的设计初衷是为了在不可靠的网络中运作良好，为不同的场景提供了三个级别的服务质量，允许客户端指定自己想要的可靠性级别。QoS =0：至多一次这是最简单的级别，无需客户端确认，其可靠性与基础网络层 TCP/IP 一致。QoS =1：至少一次，有可能重复确保至少向客户端发送一次信息，不过也可发送多次；在接收数据包时，需要客户端返回确认消息（ACK 包）。这种方式常用于传递确保交付的信息，但开发人员必须确保其系统可以处理重复的数据包。QoS =2：只有一次，确保消息只到达一次这是最不常见的服务质量级别，确保消息发送且仅发送一次。这种方法需要交换4个数据包，同时也会降低消息代理的性能。由于相对比较复杂，在 MQTT 实现中通常会忽略这个级别，请确保在选择数据库或消息代理前检查这个问题。③此时sub在线状态的话会直接接收到来自pub的信息。如果此时sub处于离线状态。想要在接受到pub发布的信息。需要让clean_session置为false;在sub命令帮助中-c就是关闭clean_session的功能。同时需要-i(指定一个id)，同样Qos也指定为1。具体命令mosquitto_sub -t topic -c -i id -q 1。此时sub能够接收到pub发布的离线信息。在mosquitto.conf文件中找到persistence选项，将persistence设置为true,在broker离线时能够保存此时pub和sub的信息到.db文件中。在broker重启之后将数据导入回broker。此时sub还能接收到离线的pub发布的信息。
 
+作者：拉环yh
+链接：https://www.jianshu.com/p/da9bd6be72c2
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
