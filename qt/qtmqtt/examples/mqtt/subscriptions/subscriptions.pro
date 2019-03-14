@@ -16,12 +16,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    subscriptionwindow.cpp
+    subscriptionwindow.cpp \
+    selectionmenu.cpp \
+    publishermenu.cpp \
+    subscribermenu.cpp
 
 HEADERS  += mainwindow.h \
-    subscriptionwindow.h
+    subscriptionwindow.h \
+    selectionmenu.h \
+    publishermenu.h \
+    subscribermenu.h
 FORMS    += mainwindow.ui \
-    subscriptionwindow.ui
+    subscriptionwindow.ui \
+    selectionmenu.ui \
+    publishermenu.ui \
+    subscribermenu.ui
 
 target.path = $$[QT_INSTALL_EXAMPLES]/mqtt/subscriptions
 INSTALLS += target
