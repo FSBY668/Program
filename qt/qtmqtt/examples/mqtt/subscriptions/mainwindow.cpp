@@ -199,9 +199,9 @@ void MainWindow::on_pushButton_Login_clicked()
     QString username = ui->lineEdit_User->text();
     QString password = ui->lineEdit_User->text();
 
-    if (username == "test" && password == "test")
+    if (username == "" && password == "")
     {
-        QMessageBox::information(this, "Login", "Username and password is correct");
+        //QMessageBox::information(this, "Login", "Username and password is correct");
         //ui->statusBar->showMessage("Username and password is correct", 5000);
         //ui->label_3->setText("Username and password is correct");
 

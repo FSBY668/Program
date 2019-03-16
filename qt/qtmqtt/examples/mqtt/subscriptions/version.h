@@ -2,9 +2,9 @@
 // Author: Wenwei Gu
 // Created on 22.01.2019
 
-const static std::string strVersion = "5";
+const static std::string strVersion = "6";
 
-// version 1 2019-02
+// version 1 2019-01-22
 // * Install the Qt 5.9.1 and 5.9.2
 // * Download the Android SDK and NDK
 // * using IDE QtCreator, set the kits. 
@@ -18,3 +18,5 @@ const static std::string strVersion = "5";
 // version 5 2019-03-14
 // * seperate the publisher and subscriber (not finsished)
 // * login and registion system (not finished)
+// version 6 2019-03-16
+// * seperate the publisher, subscriber and subscription window (continued)

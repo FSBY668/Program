@@ -2,6 +2,8 @@
 #define PUBLISHERMENU_H
 
 #include <QDialog>
+#include <QTcpSocket>
+#include <QtMqtt/QMqttClient>
 
 namespace Ui {
 class PublisherMenu;
@@ -15,8 +17,16 @@ public:
     explicit PublisherMenu(QWidget *parent = 0);
     ~PublisherMenu();
 
+private slots:
+    void brokerDisconnected();
+
+    void on_pushButton_Pub_Publish_clicked();
+
+    void on_pushButton_Pub_Connect_clicked();
+
 private:
-    Ui::PublisherMenu *ui;
+    Ui::PublisherMenu* ui;
+    QMqttClient* m_client;
 };
 
 #endif // PUBLISHERMENU_H
