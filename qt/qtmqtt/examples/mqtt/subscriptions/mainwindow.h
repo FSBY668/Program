@@ -53,9 +53,7 @@
 
 #include <QMainWindow>
 #include "selectionmenu.h"
-
-//#include <QTcpSocket>
-//#include <QtMqtt/QMqttClient>
+#include "registrationmenu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -75,24 +73,18 @@ public slots:
     //void setClientPort(int p);
 
 private slots:
-    //void on_buttonConnect_clicked();
     //void on_buttonQuit_clicked();
     //void updateLogStateChange();
-
-    //void brokerDisconnected();
-
-    //void on_buttonPublish_clicked();
-
-    //void on_buttonSubscribe_clicked();
-
     //void on_buttonPing_clicked();
 
     void on_pushButton_Login_clicked();
 
+    void on_pushButton_Registe_clicked();
+
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow* ui;
     SelectionMenu* selectionMenu;
-    //QMqttClient *m_client;
+    RegistrationMenu* registrationMenu;
 };
 
 #endif // MAINWINDOW_H

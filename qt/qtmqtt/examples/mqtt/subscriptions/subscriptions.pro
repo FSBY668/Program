@@ -19,18 +19,22 @@ SOURCES += main.cpp\
     subscriptionwindow.cpp \
     selectionmenu.cpp \
     publishermenu.cpp \
-    subscribermenu.cpp
+    subscribermenu.cpp \
+    registrationmenu.cpp
 
 HEADERS  += mainwindow.h \
     subscriptionwindow.h \
     selectionmenu.h \
     publishermenu.h \
-    subscribermenu.h
+    subscribermenu.h \
+    registrationmenu.h \
+    version.h
 FORMS    += mainwindow.ui \
     subscriptionwindow.ui \
     selectionmenu.ui \
     publishermenu.ui \
-    subscribermenu.ui
+    subscribermenu.ui \
+    registrationmenu.ui
 
 target.path = $$[QT_INSTALL_EXAMPLES]/mqtt/subscriptions
 INSTALLS += target
@@ -44,6 +48,7 @@ DISTFILES += \
     android/res/values/libs.xml \
     android/build.gradle \
     android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat
+    android/gradlew.bat \
+    user
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

@@ -49,11 +49,9 @@
 ****************************************************************************/
 
 #include "mainwindow.h"
-//#include "subscriptionwindow.h"
 #include "ui_mainwindow.h"
 
 //#include <QtCore/QDateTime>
-//#include <QtMqtt/QMqttClient>
 #include <QtWidgets/QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -61,12 +59,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-//    m_client = new QMqttClient(this);
-//    m_client->setHostname(ui->lineEditHost->text());
-//    m_client->setPort(ui->spinBoxPort->value());
-//    m_client->setCleanSession(false);
-//    m_client->setKeepAlive(7*24*60*60);
 
 //    connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);
 //    connect(m_client, &QMqttClient::disconnected, this, &MainWindow::brokerDisconnected);
@@ -102,25 +94,6 @@ MainWindow::~MainWindow()
     qApp->quit();
 }
 
-//void MainWindow::on_buttonConnect_clicked()
-//{
-//    if (m_client->state() == QMqttClient::Disconnected) {
-//        ui->lineEditHost->setEnabled(false);
-//        ui->spinBoxPort->setEnabled(false);
-//        ui->lineEditUser->setEnabled(false);
-//        ui->lineEditPassword->setEnabled(false);
-//        ui->buttonConnect->setText(tr("Disconnect"));
-//        m_client->connectToHost();
-//    } else {
-//        ui->lineEditHost->setEnabled(true);
-//        ui->spinBoxPort->setEnabled(true);
-//        ui->lineEditUser->setEnabled(true);
-//        ui->lineEditPassword->setEnabled(true);
-//        ui->buttonConnect->setText(tr("Connect"));
-//        m_client->disconnectFromHost();
-//    }
-//}
-
 //void MainWindow::on_buttonQuit_clicked()
 //{
 //    QApplication::quit();
@@ -135,57 +108,9 @@ MainWindow::~MainWindow()
 //    ui->editLog->insertPlainText(content);
 //}
 
-//void MainWindow::brokerDisconnected()
-//{
-//    ui->lineEditHost->setEnabled(true);
-//    ui->spinBoxPort->setEnabled(true);
-//    ui->lineEditUser->setEnabled(true);
-//    ui->lineEditPassword->setEnabled(true);
-//    ui->buttonConnect->setText(tr("Connect"));
-
-//    ui->lineEditHost->setEnabled(false);
-//    ui->spinBoxPort->setEnabled(false);
-//    ui->lineEditUser->setEnabled(false);
-//    ui->lineEditPassword->setEnabled(false);
-//    ui->buttonConnect->setText(tr("Disconnect"));
-
-////    // 2019-02-10: with this on PC keep Mqtt broker connection
-////    m_client = new QMqttClient(this);
-
-////    if (m_client)
-////    {
-////        m_client->setHostname("77.9.26.181");
-////        m_client->setPort(1883);
-////        m_client->connectToHost();
-////        m_client->subscribe(ui->lineEditTopic->text(), ui->spinQoS->text().toUInt());
-////    }
-
-//}
-
 //void MainWindow::setClientPort(int p)
 //{
 //    m_client->setPort(p);
-//}
-
-//void MainWindow::on_buttonPublish_clicked()
-//{
-//    if (m_client->publish(ui->lineEditTopic->text(),
-//                          ui->lineEditMessage->text().toUtf8(),
-//                          2 /*ui->spinQoS_2->text().toUInt()*/,
-//                          true /*ui->checkBoxRetain->isChecked()*/) == -1)
-//        QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not publish message"));
-//}
-
-//void MainWindow::on_buttonSubscribe_clicked()
-//{
-//    auto subscription = m_client->subscribe(ui->lineEditTopic->text(), 2 /*ui->spinQoS->text().toUInt()*/);
-//    if (!subscription) {
-//        QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not subscribe. Is there a valid connection?"));
-//        return;
-//    }
-//    auto subWindow = new SubscriptionWindow(subscription);
-//    subWindow->setWindowTitle(subscription->topic().filter());
-//    subWindow->show();
 //}
 
 //void MainWindow::on_buttonPing_clicked()
@@ -209,9 +134,6 @@ void MainWindow::on_pushButton_Login_clicked()
 
         selectionMenu = new SelectionMenu(this);
         selectionMenu->show();
-
-        //secDialog = new SecDialog(this);
-        //secDialog->show();
     }
     else
     {
@@ -219,4 +141,10 @@ void MainWindow::on_pushButton_Login_clicked()
         //ui->statusBar->showMessage("Username and password is not correct", 5000);
         //ui->label_3->setText("Username and password is not correct");
     }
+}
+
+void MainWindow::on_pushButton_Registe_clicked()
+{
+    registrationMenu = new RegistrationMenu(this);
+    registrationMenu->show();
 }
