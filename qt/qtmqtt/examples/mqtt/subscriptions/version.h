@@ -2,7 +2,7 @@
 // Author: Wenwei Gu
 // Created on 22.01.2019
 
-const static std::string strVersion = "7";
+const static std::string strVersion = "8";
 
 // version 1 2019-01-22
 // * Install the Qt 5.9.1 and 5.9.2
@@ -23,3 +23,6 @@ const static std::string strVersion = "7";
 // version 7 2019-03-17
 // * registration system, write to a file, which should be later stored on the server. Data stored in the file is 
 //	{Username, Password, UserLevel} (continued, not finished)
+// version 8 2019-03-18
+// * change the widget type of subscription window from listWidget to plainTextEdit
+// * finish the basic login system

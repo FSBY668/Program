@@ -53,6 +53,10 @@
 
 //#include <QtCore/QDateTime>
 #include <QtWidgets/QMessageBox>
+#include <QFile>
+//#include <QFileDialog>
+#include <QTextStream>
+#include <QUrl>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -121,26 +125,59 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_Login_clicked()
 {
+    bool bLoginSuccessful = false;
     QString username = ui->lineEdit_User->text();
-    QString password = ui->lineEdit_User->text();
+    QString password = ui->lineEdit_Password->text();
 
-    if (username == "" && password == "")
+    // file path can be moved to the config file
+    QUrl url("file:///home/wenwei/Program/qt/qtmqtt/examples/mqtt/subscriptions/user");
+    QFile file(url.toLocalFile());
+
+    //QString filter = "All File (*) ;; cpp File (*.cpp) ;; header file (*.h)";
+    //QString file_name = QFileDialog::getOpenFileName(this, "open a file", "/home/wenwei/Program/Qt Tutorial/Build/QFileDemo", filter);
+    //QFile file(file_name);
+    //QFile file("/home/wenwei/Program/QFileDemo/myfile");
+
+    if (!file.open(QFile::ReadOnly | QFile::Text))
     {
-        //QMessageBox::information(this, "Login", "Username and password is correct");
-        //ui->statusBar->showMessage("Username and password is correct", 5000);
-        //ui->label_3->setText("Username and password is correct");
-
-        hide();
-
-        selectionMenu = new SelectionMenu(this);
-        selectionMenu->show();
+        QMessageBox::warning(this, "title", "file not open");
     }
-    else
+
+    QTextStream in(&file);
+    while (!in.atEnd())
+    {
+        QString line = in.readLine();
+        QStringList lineList = line.split(' ', QString::SkipEmptyParts);
+
+        if (lineList.size() > 2)
+        {
+            if (username == lineList[0])
+            {
+                if (password == lineList[1])
+                {
+                    //QMessageBox::information(this, "Login", "Username and password is correct");
+                    //ui->statusBar->showMessage("Username and password is correct", 5000);
+                    //ui->label_3->setText("Username and password is correct");
+
+                    hide();
+
+                    selectionMenu = new SelectionMenu(this);
+                    selectionMenu->show();
+                    bLoginSuccessful = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    if (!bLoginSuccessful)
     {
         QMessageBox::warning(this, "Login", "Username and password is not correct");
         //ui->statusBar->showMessage("Username and password is not correct", 5000);
         //ui->label_3->setText("Username and password is not correct");
     }
+
+    file.close();
 }
 
 void MainWindow::on_pushButton_Registe_clicked()

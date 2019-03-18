@@ -11,7 +11,7 @@ SubscriberMenu::SubscriberMenu(QWidget *parent) :
     ui->setupUi(this);
 
     m_client = new QMqttClient(this); // to check the pointer
-    m_client->setHostname("95.114.82.233"/*ui->lineEdit->text()*/);
+    m_client->setHostname("77.4.110.160"/*ui->lineEdit->text()*/);
     m_client->setPort(1883); // to be in config file, or ui ui->spinBoxPort->value()
     m_client->setCleanSession(false);
     m_client->setKeepAlive(7*24*60*60);

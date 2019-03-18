@@ -77,7 +77,8 @@ SubscriptionWindow::~SubscriptionWindow()
 
 void SubscriptionWindow::updateMessage(const QMqttMessage &msg)
 {
-    ui->listWidget->addItem(msg.payload());
+    //ui->listWidget->addItem(msg.payload());
+    ui->plainTextEdit->appendPlainText(msg.payload());
 }
 
 void SubscriptionWindow::updateStatus(QMqttSubscription::SubscriptionState state)
