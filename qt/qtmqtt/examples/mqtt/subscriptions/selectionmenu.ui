@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>50</x>
@@ -34,6 +34,13 @@
      <widget class="QPushButton" name="pushButton_Subscriber">
       <property name="text">
        <string>Subscriber</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Log out</string>
       </property>
      </widget>
     </item>

@@ -13,7 +13,7 @@ PublisherMenu::PublisherMenu(QWidget *parent) :
     ui->setupUi(this);
 
     m_client = new QMqttClient(this); // to check the pointer
-    m_client->setHostname("77.4.110.160"/*ui->lineEdit->text()*/); // to be in the config file
+    m_client->setHostname("95.114.56.45"/*ui->lineEdit->text()*/); // to be in the config file
     m_client->setPort(1883); // to be in config file, or ui ui->spinBoxPort->value()
     m_client->setCleanSession(false);
     m_client->setKeepAlive(60);
@@ -86,4 +86,9 @@ void PublisherMenu::on_pushButton_Pub_Publish_clicked()
     {
         QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not publish message"));
     }
+}
+
+void PublisherMenu::on_pushButton_clicked()
+{
+    close();
 }

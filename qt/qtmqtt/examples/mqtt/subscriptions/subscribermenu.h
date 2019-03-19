@@ -30,6 +30,8 @@ private slots:
 
     void on_pushButton_Subscribe_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::SubscriberMenu* ui;
     QMqttClient* m_client;

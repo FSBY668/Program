@@ -2,7 +2,7 @@
 // Author: Wenwei Gu
 // Created on 22.01.2019
 
-const static std::string strVersion = "8";
+const static std::string strVersion = "9";
 
 // version 1 2019-01-22
 // * Install the Qt 5.9.1 and 5.9.2
@@ -26,3 +26,9 @@ const static std::string strVersion = "8";
 // version 8 2019-03-18
 // * change the widget type of subscription window from listWidget to plainTextEdit
 // * finish the basic login system
+// version 9 2019-03-19
+// * main menu editline default focus, tab button move to next editline
+// * enable/disable the publisher and subscriber button according to the userlevel
+// * info box of incomplete registration input DONE
+// * Dialog titles
+// * back/close/Logout buttons

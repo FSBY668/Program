@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButton_Pub_Connect_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::PublisherMenu* ui;
     QMqttClient* m_client;

@@ -72,6 +72,10 @@ public:
 public slots:
     void updateMessage(const QMqttMessage &msg);
     void updateStatus(QMqttSubscription::SubscriptionState state);
+private slots:
+
+    void on_pushButton_clicked();
+
 private:
     Ui::SubscriptionWindow *ui;
     QMqttSubscription *m_sub;

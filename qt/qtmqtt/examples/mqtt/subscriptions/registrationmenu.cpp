@@ -20,6 +20,21 @@ RegistrationMenu::~RegistrationMenu()
 
 void RegistrationMenu::on_pushButton_Confirm_clicked()
 {
+    bool isUserNameEmpty = ui->lineEdit_Username->text().isEmpty();
+    bool isPasswordEmpty = ui->lineEdit_Password->text().isEmpty();
+    bool isRepeatPasswordEmpty = ui->lineEdit_Repeat_Password->text().isEmpty();
+    bool isUserLevelSelected = ui->radioButton_NormalUser->isChecked() || ui->radioButton_Organisation->isChecked();
+    if (isUserNameEmpty || isPasswordEmpty || isRepeatPasswordEmpty || !isUserLevelSelected)
+    {
+        QMessageBox::warning(this, "Registration Error", "check your input");
+        return;
+    }
+    if (ui->lineEdit_Password->text() != ui->lineEdit_Repeat_Password->text())
+    {
+        QMessageBox::warning(this, "Registration Error", "check your input Passwords");
+        return;
+    }
+
     // file path can be moved to the config file
     QUrl url("file:///home/wenwei/Program/qt/qtmqtt/examples/mqtt/subscriptions/user");
     QFile file(url.toLocalFile());
@@ -31,7 +46,6 @@ void RegistrationMenu::on_pushButton_Confirm_clicked()
     QTextStream out(&file);
     QString text = ui->lineEdit_Username->text();
     text += " ";
-    // if the repeated password matches the password, continue; otherwise give a warning
     text += ui->lineEdit_Password->text();
     text += " ";
 
@@ -49,5 +63,10 @@ void RegistrationMenu::on_pushButton_Confirm_clicked()
     file.flush();
     file.close();
 
+    close();
+}
+
+void RegistrationMenu::on_pushButton_Cancel_clicked()
+{
     close();
 }

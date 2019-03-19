@@ -11,7 +11,7 @@ SubscriberMenu::SubscriberMenu(QWidget *parent) :
     ui->setupUi(this);
 
     m_client = new QMqttClient(this); // to check the pointer
-    m_client->setHostname("77.4.110.160"/*ui->lineEdit->text()*/);
+    m_client->setHostname("95.114.56.45"/*ui->lineEdit->text()*/);
     m_client->setPort(1883); // to be in config file, or ui ui->spinBoxPort->value()
     m_client->setCleanSession(false);
     m_client->setKeepAlive(7*24*60*60);
@@ -113,7 +113,12 @@ void SubscriberMenu::on_pushButton_Subscribe_clicked()
         return;
     }
 
-    auto subWindow = new SubscriptionWindow(subscription);
+    auto subWindow = new SubscriptionWindow(subscription/*, this*/);
     subWindow->setWindowTitle(subscription->topic().filter());
     subWindow->show();
+}
+
+void SubscriberMenu::on_pushButton_clicked()
+{
+    close();
 }

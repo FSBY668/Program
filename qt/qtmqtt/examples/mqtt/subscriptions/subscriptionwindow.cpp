@@ -101,3 +101,8 @@ void SubscriptionWindow::updateStatus(QMqttSubscription::SubscriptionState state
         break;
     }
 }
+
+void SubscriptionWindow::on_pushButton_clicked()
+{
+    close();
+}

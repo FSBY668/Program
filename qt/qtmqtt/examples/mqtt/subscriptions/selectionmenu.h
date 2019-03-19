@@ -15,7 +15,7 @@ class SelectionMenu : public QDialog
     Q_OBJECT
 
 public:
-    explicit SelectionMenu(QWidget *parent = 0);
+    explicit SelectionMenu(QString userLevel, QWidget *parent = 0);
     ~SelectionMenu();
 
 private slots:
@@ -23,10 +23,13 @@ private slots:
 
     void on_pushButton_Subscriber_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::SelectionMenu *ui;
     PublisherMenu* publisherMenu;
     SubscriberMenu* subscriberMenu;
+    QString m_userLevel;
 };
 
 #endif // SELECTIONMENU_H

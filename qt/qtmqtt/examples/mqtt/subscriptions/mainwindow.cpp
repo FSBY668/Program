@@ -63,6 +63,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setWindowTitle("Public Info");
 
 //    connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);
 //    connect(m_client, &QMqttClient::disconnected, this, &MainWindow::brokerDisconnected);
@@ -159,11 +160,14 @@ void MainWindow::on_pushButton_Login_clicked()
                     //ui->statusBar->showMessage("Username and password is correct", 5000);
                     //ui->label_3->setText("Username and password is correct");
 
-                    hide();
+                    //hide();
 
-                    selectionMenu = new SelectionMenu(this);
+                    selectionMenu = new SelectionMenu(lineList[2], this);
+                    selectionMenu->setWindowTitle("Selection Menu");
                     selectionMenu->show();
                     bLoginSuccessful = true;
+                    ui->lineEdit_User->clear();
+                    ui->lineEdit_Password->clear();
                     break;
                 }
             }
@@ -183,5 +187,6 @@ void MainWindow::on_pushButton_Login_clicked()
 void MainWindow::on_pushButton_Registe_clicked()
 {
     registrationMenu = new RegistrationMenu(this);
+    registrationMenu->setWindowTitle("Registration Menu");
     registrationMenu->show();
 }

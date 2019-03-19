@@ -18,6 +18,8 @@ public:
 private slots:
     void on_pushButton_Confirm_clicked();
 
+    void on_pushButton_Cancel_clicked();
+
 private:
     Ui::RegistrationMenu *ui;
 };
