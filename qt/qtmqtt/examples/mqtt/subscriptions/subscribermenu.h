@@ -25,17 +25,12 @@ public slots:
 private slots:
     void brokerDisconnected();
     void on_pushButton_Sub_Connect_clicked();
-
-    //void on_pushButton_Unsubscribe_clicked();
-
     void on_pushButton_Subscribe_clicked();
-
     void on_pushButton_clicked();
 
 private:
     Ui::SubscriberMenu* ui;
     QMqttClient* m_client;
-    //QMqttSubscription* m_sub;
 };
 
 #endif // SUBSCRIBERMENU_H

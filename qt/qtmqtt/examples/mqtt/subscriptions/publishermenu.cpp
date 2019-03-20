@@ -3,47 +3,50 @@
 #include <QtCore/QDateTime>
 #include <QtWidgets/QMessageBox>
 
-//#include <QTcpSocket>
-//#include <QtMqtt/QMqttClient>
-
 PublisherMenu::PublisherMenu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PublisherMenu)
 {
-    ui->setupUi(this);
+    if (ui)
+    {
+        ui->setupUi(this);
 
-    m_client = new QMqttClient(this); // to check the pointer
-    m_client->setHostname("95.114.56.45"/*ui->lineEdit->text()*/); // to be in the config file
-    m_client->setPort(1883); // to be in config file, or ui ui->spinBoxPort->value()
-    m_client->setCleanSession(false);
-    m_client->setKeepAlive(60);
+        m_client = new QMqttClient(this); // to check the pointer
+        if (m_client)
+        {
+            m_client->setHostname("95.115.106.113"/*ui->lineEdit->text()*/); // to be in the config file
+            m_client->setPort(1883); // to be in config file, or ui ui->spinBoxPort->value()
+            m_client->setCleanSession(false);
+            m_client->setKeepAlive(60);
 
-    //connect(m_client, &QMqttClient::stateChanged, this, &PublisherMenu::updateLogStateChange);
-    connect(m_client, &QMqttClient::disconnected, this, &PublisherMenu::brokerDisconnected);
+            //connect(m_client, &QMqttClient::stateChanged, this, &PublisherMenu::updateLogStateChange);
+            connect(m_client, &QMqttClient::disconnected, this, &PublisherMenu::brokerDisconnected);
 
-//    connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
-//        const QString content = QDateTime::currentDateTime().toString()
-//                + QLatin1String(" Received Topic: ")
-//                + topic.name()
-//                + QLatin1String(" Message: ")
-//                + message
-//                + QLatin1Char('\n');
-//        ui->editLog->insertPlainText(content);
-//    });
+            //    connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
+            //        const QString content = QDateTime::currentDateTime().toString()
+            //                + QLatin1String(" Received Topic: ")
+            //                + topic.name()
+            //                + QLatin1String(" Message: ")
+            //                + message
+            //                + QLatin1Char('\n');
+            //        ui->editLog->insertPlainText(content);
+            //    });
 
-//    connect(m_client, &QMqttClient::pingResponseReceived, this, [this]() {
-//        ui->buttonPing->setEnabled(true);
-//        const QString content = QDateTime::currentDateTime().toString()
-//                + QLatin1String(" PingResponse")
-//                + QLatin1Char('\n');
-//        ui->editLog->insertPlainText(content);
-//    });
+            //    connect(m_client, &QMqttClient::pingResponseReceived, this, [this]() {
+            //        ui->buttonPing->setEnabled(true);
+            //        const QString content = QDateTime::currentDateTime().toString()
+            //                + QLatin1String(" PingResponse")
+            //                + QLatin1Char('\n');
+            //        ui->editLog->insertPlainText(content);
+            //    });
 
-    connect(ui->lineEdit_Pub_Host, &QLineEdit::textChanged, m_client, &QMqttClient::setHostname);
-    //connect(ui->spinBoxPort, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::setClientPort);
-    //connect(ui->lineEditUser, &QLineEdit::textChanged, m_client, &QMqttClient::setUsername);
-    //connect(ui->lineEditPassword, &QLineEdit::textChanged, m_client, &QMqttClient::setPassword);
-    //updateLogStateChange();
+            connect(ui->lineEdit_Pub_Host, &QLineEdit::textChanged, m_client, &QMqttClient::setHostname);
+            //connect(ui->spinBoxPort, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::setClientPort);
+            //connect(ui->lineEditUser, &QLineEdit::textChanged, m_client, &QMqttClient::setUsername);
+            //connect(ui->lineEditPassword, &QLineEdit::textChanged, m_client, &QMqttClient::setPassword);
+            //updateLogStateChange();
+        }
+    }
 }
 
 PublisherMenu::~PublisherMenu()

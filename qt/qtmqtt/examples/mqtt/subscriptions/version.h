@@ -2,7 +2,7 @@
 // Author: Wenwei Gu
 // Created on 22.01.2019
 
-const static std::string strVersion = "9";
+const static std::string strVersion = "10";
 
 // version 1 2019-01-22
 // * Install the Qt 5.9.1 and 5.9.2
@@ -32,3 +32,5 @@ const static std::string strVersion = "9";
 // * info box of incomplete registration input DONE
 // * Dialog titles
 // * back/close/Logout buttons
+// version 10 2019-03-20
+// * clean the code a little bit
