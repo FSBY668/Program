@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "registrationmenu.h"
 #include "ui_registrationmenu.h"
 #include <QFile>
@@ -10,12 +11,14 @@ RegistrationMenu::RegistrationMenu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::RegistrationMenu)
 {
+    m_config = new Configuration(strConfigFilePath);
     ui->setupUi(this);
 }
 
 RegistrationMenu::~RegistrationMenu()
 {
     delete ui;
+    delete m_config;
 }
 
 void RegistrationMenu::on_pushButton_Confirm_clicked()
@@ -35,8 +38,13 @@ void RegistrationMenu::on_pushButton_Confirm_clicked()
         return;
     }
 
-    // file path can be moved to the config file
-    QUrl url("file:///home/wenwei/Program/qt/qtmqtt/examples/mqtt/subscriptions/user");
+    if (!m_config)
+    {
+        return;
+    }
+
+    QString userFilePath = m_config->getConfigAttribute(EConfigAttribute::eUserFilePath);
+    QUrl url(userFilePath);
     QFile file(url.toLocalFile());
     if (!file.open(QFile::WriteOnly | QFile::Text | QIODevice::Append))
     {

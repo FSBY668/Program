@@ -2,6 +2,7 @@
 #define REGISTRATIONMENU_H
 
 #include <QDialog>
+#include "configuration.h"
 
 namespace Ui {
 class RegistrationMenu;
@@ -21,7 +22,8 @@ private slots:
     void on_pushButton_Cancel_clicked();
 
 private:
-    Ui::RegistrationMenu *ui;
+    Ui::RegistrationMenu* ui;
+    Configuration* m_config;
 };
 
 #endif // REGISTRATIONMENU_H

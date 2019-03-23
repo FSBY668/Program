@@ -1,6 +1,7 @@
 #ifndef SUBSCRIBERMENU_H
 #define SUBSCRIBERMENU_H
 
+#include "configuration.h"
 #include <QDialog>
 #include <QTcpSocket>
 #include <QtMqtt/QMqttClient>
@@ -23,7 +24,7 @@ public slots:
     //void updateStatus(QMqttSubscription::SubscriptionState state);
 
 private slots:
-    void brokerDisconnected();
+    //void brokerDisconnected();
     void on_pushButton_Sub_Connect_clicked();
     void on_pushButton_Subscribe_clicked();
     void on_pushButton_clicked();
@@ -31,6 +32,7 @@ private slots:
 private:
     Ui::SubscriberMenu* ui;
     QMqttClient* m_client;
+    Configuration* m_config;
 };
 
 #endif // SUBSCRIBERMENU_H

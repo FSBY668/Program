@@ -1,3 +1,4 @@
+#include "defines.h"
 #include "publishermenu.h"
 #include "ui_publishermenu.h"
 #include <QtCore/QDateTime>
@@ -7,20 +8,25 @@ PublisherMenu::PublisherMenu(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::PublisherMenu)
 {
+    m_config = new Configuration(strConfigFilePath);
+
     if (ui)
     {
         ui->setupUi(this);
 
-        m_client = new QMqttClient(this); // to check the pointer
-        if (m_client)
+        m_client = new QMqttClient(this);
+        if (m_client && m_config)
         {
-            m_client->setHostname("95.115.106.113"/*ui->lineEdit->text()*/); // to be in the config file
-            m_client->setPort(1883); // to be in config file, or ui ui->spinBoxPort->value()
-            m_client->setCleanSession(false);
-            m_client->setKeepAlive(60);
+            m_client->setHostname(m_config->getConfigAttribute(EConfigAttribute::eBrokerIP_Publisher));
+            m_client->setPort((m_config->getConfigAttribute(EConfigAttribute::eMqttPort_Publisher)).toInt());
+            QString strCleanSession = m_config->getConfigAttribute(EConfigAttribute::eCleanSession_Publisher);
+            QVariant temp = strCleanSession;
+            bool bCleanSession = temp.toBool();
+            m_client->setCleanSession(bCleanSession);
+            m_client->setKeepAlive((m_config->getConfigAttribute(EConfigAttribute::eKeepAlive_Publisher)).toInt());
 
             //connect(m_client, &QMqttClient::stateChanged, this, &PublisherMenu::updateLogStateChange);
-            connect(m_client, &QMqttClient::disconnected, this, &PublisherMenu::brokerDisconnected);
+            //connect(m_client, &QMqttClient::disconnected, this, &PublisherMenu::brokerDisconnected);
 
             //    connect(m_client, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
             //        const QString content = QDateTime::currentDateTime().toString()
@@ -40,7 +46,7 @@ PublisherMenu::PublisherMenu(QWidget *parent) :
             //        ui->editLog->insertPlainText(content);
             //    });
 
-            connect(ui->lineEdit_Pub_Host, &QLineEdit::textChanged, m_client, &QMqttClient::setHostname);
+            //connect(ui->lineEdit_Pub_Host, &QLineEdit::textChanged, m_client, &QMqttClient::setHostname);
             //connect(ui->spinBoxPort, QOverload<int>::of(&QSpinBox::valueChanged), this, &MainWindow::setClientPort);
             //connect(ui->lineEditUser, &QLineEdit::textChanged, m_client, &QMqttClient::setUsername);
             //connect(ui->lineEditPassword, &QLineEdit::textChanged, m_client, &QMqttClient::setPassword);
@@ -53,39 +59,54 @@ PublisherMenu::~PublisherMenu()
 {
     delete ui;
     delete m_client;
+    delete m_config;
 }
 
 void PublisherMenu::on_pushButton_Pub_Connect_clicked()
 {
     if (m_client->state() == QMqttClient::Disconnected)
     {
-        ui->lineEdit_Pub_Host->setEnabled(false);
-        ui->pushButton_Pub_Connect->setText(tr("Disconnect"));
+        //ui->lineEdit_Pub_Host->setEnabled(false);
+        ui->pushButton_Pub_Connect->setText(tr("Disconnect from Mqtt Broker"));
         m_client->connectToHost();
     }
     else
     {
-        ui->lineEdit_Pub_Host->setEnabled(true);
-        ui->pushButton_Pub_Connect->setText(tr("Connect"));
+        //ui->lineEdit_Pub_Host->setEnabled(true);
+        ui->pushButton_Pub_Connect->setText(tr("Connect to Mqtt Broker"));
         m_client->disconnectFromHost();
     }
 }
 
-void PublisherMenu::brokerDisconnected()
-{
-    ui->lineEdit_Pub_Host->setEnabled(true);
-    ui->pushButton_Pub_Connect->setText(tr("Connect"));
-
-    ui->lineEdit_Pub_Host->setEnabled(false);
-    ui->pushButton_Pub_Connect->setText(tr("Disconnect"));
-}
+//void PublisherMenu::brokerDisconnected()
+//{
+//    if (m_client->state() == QMqttClient::Disconnected)
+//    {
+//        //ui->lineEdit_Pub_Host->setEnabled(true);
+//        ui->pushButton_Pub_Connect->setText(tr("Disconnect from Mqtt Broker"));
+//    }
+//    else
+//    {
+//        //ui->lineEdit_Pub_Host->setEnabled(false);
+//        ui->pushButton_Pub_Connect->setText(tr("Connect to Mqtt Broker"));
+//    }
+//}
 
 void PublisherMenu::on_pushButton_Pub_Publish_clicked()
 {
+    if (!m_config)
+    {
+        return;
+    }
+
+    QString strRetain = m_config->getConfigAttribute(EConfigAttribute::eRetain_Publisher);
+    QVariant temp = strRetain;
+    bool bRetain = temp.toBool();
+
     if (m_client->publish(ui->lineEdit_Pub_Topic->text(),
                           ui->plainTextEdit_Pub_Message->toPlainText().toUtf8(),
-                          1 /*ui->spinQoS_2->text().toUInt()*/,
-                          true /*ui->checkBoxRetain->isChecked()*/) == -1)
+                          (m_config->getConfigAttribute(EConfigAttribute::eQoS_Publisher)).toInt(),
+                          bRetain) == -1)
     {
         QMessageBox::critical(this, QLatin1String("Error"), QLatin1String("Could not publish message"));
     }

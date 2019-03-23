@@ -54,6 +54,7 @@
 #include <QMainWindow>
 #include "selectionmenu.h"
 #include "registrationmenu.h"
+#include "configuration.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -85,6 +86,7 @@ private:
     Ui::MainWindow* ui;
     SelectionMenu* selectionMenu;
     RegistrationMenu* registrationMenu;
+    Configuration* m_config;
 };
 
 #endif // MAINWINDOW_H

@@ -1,6 +1,7 @@
 #ifndef PUBLISHERMENU_H
 #define PUBLISHERMENU_H
 
+#include "configuration.h"
 #include <QDialog>
 #include <QTcpSocket>
 #include <QtMqtt/QMqttClient>
@@ -18,17 +19,15 @@ public:
     ~PublisherMenu();
 
 private slots:
-    void brokerDisconnected();
-
+    //void brokerDisconnected();
     void on_pushButton_Pub_Publish_clicked();
-
     void on_pushButton_Pub_Connect_clicked();
-
     void on_pushButton_clicked();
 
 private:
     Ui::PublisherMenu* ui;
     QMqttClient* m_client;
+    Configuration* m_config;
 };
 
 #endif // PUBLISHERMENU_H

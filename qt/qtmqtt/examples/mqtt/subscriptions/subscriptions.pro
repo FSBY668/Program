@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     selectionmenu.cpp \
     publishermenu.cpp \
     subscribermenu.cpp \
-    registrationmenu.cpp
+    registrationmenu.cpp \
+    configuration.cpp
 
 HEADERS  += mainwindow.h \
     subscriptionwindow.h \
@@ -28,7 +29,9 @@ HEADERS  += mainwindow.h \
     publishermenu.h \
     subscribermenu.h \
     registrationmenu.h \
-    version.h
+    version.h \
+    configuration.h \
+    defines.h
 FORMS    += mainwindow.ui \
     subscriptionwindow.ui \
     selectionmenu.ui \

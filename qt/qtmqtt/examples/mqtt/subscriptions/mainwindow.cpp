@@ -48,6 +48,8 @@
 **
 ****************************************************************************/
 
+#include "version.h"
+#include "defines.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -58,14 +60,46 @@
 #include <QTextStream>
 #include <QUrl>
 
+//extern const QString configPath;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    m_config = new Configuration(QString(strConfigFilePath));
+
     if (ui)
     {
         ui->setupUi(this);
-        setWindowTitle("Public Info");
+        setWindowTitle("Public Info" + strVersion);
+
+        ui->checkBox_Remember_Login->setChecked(true);
+        if (ui->checkBox_Remember_Login->isChecked())
+        {
+            QFile fileUserCache(strUserLoginCacheFile);
+            if (!fileUserCache.open(QFile::ReadOnly | QFile::Text))
+            {
+                QMessageBox::warning(this, "title", "file not open");
+            }
+
+            QTextStream in(&fileUserCache);
+
+            QString line = in.readLine();
+            QStringList lineList = line.split(' ', QString::SkipEmptyParts);
+
+            if (lineList.size() > 1)
+            {
+                ui->lineEdit_User->setText(lineList[0]);
+                ui->lineEdit_Password->setText(lineList[1]);
+            }
+
+            fileUserCache.close();
+        }
+        else
+        {
+            ui->lineEdit_User->clear();
+            ui->lineEdit_Password->clear();
+        }
 
         //    connect(m_client, &QMqttClient::stateChanged, this, &MainWindow::updateLogStateChange);
         //    connect(m_client, &QMqttClient::disconnected, this, &MainWindow::brokerDisconnected);
@@ -99,6 +133,9 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete selectionMenu;
+    delete registrationMenu;
+    delete m_config;
     qApp->quit();
 }
 
@@ -129,7 +166,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_Login_clicked()
 {
-    if (!ui)
+    if (!ui || !m_config)
     {
         return;
     }
@@ -138,8 +175,8 @@ void MainWindow::on_pushButton_Login_clicked()
     QString username = ui->lineEdit_User->text();
     QString password = ui->lineEdit_Password->text();
 
-    // file path can be moved to the config file, read the config file, need class configuration
-    QUrl url("file:///home/wenwei/Program/qt/qtmqtt/examples/mqtt/subscriptions/user");
+    QString userFileName = m_config->getConfigAttribute(EConfigAttribute::eUserFilePath);
+    QUrl url(userFileName);
     QFile file(url.toLocalFile());
 
     //QString filter = "All File (*) ;; cpp File (*.cpp) ;; header file (*.h)";
@@ -174,8 +211,30 @@ void MainWindow::on_pushButton_Login_clicked()
                     selectionMenu->setWindowTitle("Selection Menu");
                     selectionMenu->show();
                     bLoginSuccessful = true;
-                    ui->lineEdit_User->clear();
-                    ui->lineEdit_Password->clear();
+
+                    if (ui->checkBox_Remember_Login->isChecked())
+                    {
+                        QFile fileUserCache(strUserLoginCacheFile);
+                        if (!fileUserCache.open(QFile::WriteOnly | QFile::Text))
+                        {
+                            QMessageBox::warning(this, "title", "file not open");
+                        }
+
+                        QTextStream out(&fileUserCache);
+                        QString text = username;
+                        text += " ";
+                        text += password;
+
+                        out << text;
+                        fileUserCache.flush();
+                        fileUserCache.close();
+                    }
+                    else
+                    {
+                        ui->lineEdit_User->clear();
+                        ui->lineEdit_Password->clear();
+                    }
+
                     break;
                 }
             }

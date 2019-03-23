@@ -58,6 +58,14 @@
         </layout>
        </item>
        <item>
+        <widget class="QCheckBox" name="checkBox_Remember_Login">
+         <property name="text">
+          <string>remember my login until an other 
+ user login</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButton_Login">
          <property name="text">
           <string>Login</string>
@@ -65,6 +73,9 @@
         </widget>
        </item>
       </layout>
+      <zorder>pushButton_Login</zorder>
+      <zorder>checkBox_Remember_Login</zorder>
+      <zorder>groupBox</zorder>
      </widget>
     </item>
     <item>
@@ -73,6 +84,14 @@
        <string>Registration</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Do not have an account? 
+ You can have a registration here</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QPushButton" name="pushButton_Registe">
          <property name="text">
