@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/home/wenwei/Program/qt/qtmqtt/examples/mqtt/build-subscriptions-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_2_android_armv7-Debug/android-build/libs/QtAndroid-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="187e26c92eb4ae075bf10e6fd8f2629203f4ab24">
+        <dex dex="/home/wenwei/Program/qt/qtmqtt/examples/mqtt/build-subscriptions-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_2_android_armv7-Debug/android-build/build/intermediates/pre-dexed/debug/QtAndroid-bundled_439e0ca9fd873b3b4bd906a4004eab1b7361325d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/home/wenwei/Program/qt/qtmqtt/examples/mqtt/build-subscriptions-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_2_android_armv7-Debug/android-build/libs/QtAndroidBearer-bundled.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="8050377f7cf453999b015b1e1700851bfadaabc4">
+        <dex dex="/home/wenwei/Program/qt/qtmqtt/examples/mqtt/build-subscriptions-Android_for_armeabi_v7a_GCC_4_9_Qt_5_9_2_android_armv7-Debug/android-build/build/intermediates/pre-dexed/debug/QtAndroidBearer-bundled_dcb68f83abad8fd231bc7f22cd4653b3aafef2ff.jar" />
+    </item>
+
+</items>
